@@ -1,0 +1,9 @@
+[core]
+	symlinks = false
+	repositoryformatversion = 0
+	filemode = false
+	bare = true
+	logallrefupdates = false
+[remote "origin"]
+	url = https://github.com/mwsprague/backup2S3
+	push = HEAD:refs/heads/master
