@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.amazonaws.AmazonClientException;
@@ -28,8 +30,10 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 public class AWS_S3
 {
-	public void getListing()
+	public List<String> getListing()
 	{
+		
+		List<String> list = new ArrayList<String>();
 	    AWSCredentials credentials = null;
 	    try {
 	        credentials = new ProfileCredentialsProvider("mike").getCredentials();
@@ -52,10 +56,12 @@ public class AWS_S3
 	        /*
 	         * List the buckets in your account
 	         */
-	        System.out.println("Listing buckets");
-	        for (Bucket bucket : s3.listBuckets()) {
-	            System.out.println(" - " + bucket.getName());
-	        }
+	    	ObjectListing objectList = s3.listObjects("spraguepcbackup");
+	    	String name = objectList.toString();
+	    	int cnt = objectList.getMaxKeys();
+	    	
+	        System.out.println("Object name: " + name);
+	        System.out.println("Object cnt: " + cnt);
 	        
 	    } catch (AmazonServiceException ase) {
 	        System.out.println("Caught an AmazonServiceException, which means your request made it "
@@ -71,6 +77,8 @@ public class AWS_S3
 	                + "such as not being able to access the network.");
 	        System.out.println("Error Message: " + ace.getMessage());
 	    } 
+	    
+	    return list;
 		
 	}
 	
