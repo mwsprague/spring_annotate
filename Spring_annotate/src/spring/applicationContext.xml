@@ -25,5 +25,4 @@
 
         <bean id="aParent3" class="com.mike.Parent3"/>
         
-        
 </beans>
