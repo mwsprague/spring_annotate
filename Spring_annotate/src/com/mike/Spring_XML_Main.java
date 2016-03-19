@@ -17,6 +17,9 @@ public class Spring_XML_Main
         Parent2 p2 = (Parent2) appContext.getBean("aParent2");
         p2.sayMessage();
         
+        Parent3 p3 = (Parent3) appContext.getBean("aParent3");
+        p3.sayMessage();
+
 	}
 	
 	
